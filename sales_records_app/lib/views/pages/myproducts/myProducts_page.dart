@@ -361,12 +361,96 @@ class _MyProductsPageState extends State<MyProductsPage> {
                                                   ),
                                                   child: IconButton(
                                                     onPressed: () {
-                                                      database
-                                                          .deleteMyProductRepo(
-                                                              snapshot
-                                                                  .data![index]
-                                                                  .id);
-                                                      setState(() {});
+                                                      AwesomeDialog(
+                                                        context: context,
+                                                        dialogType:
+                                                            DialogType.warning,
+                                                        headerAnimationLoop:
+                                                            false,
+                                                        animType: AnimType
+                                                            .bottomSlide,
+                                                        title:
+                                                            'Delete ${snapshot.data![index].nameProduct} from My Product ?',
+                                                        desc:
+                                                            'If you delete it, it will delete the entire transaction history of this product ! Are you sure ?',
+                                                        buttonsTextStyle:
+                                                            const TextStyle(
+                                                                color: Colors
+                                                                    .white),
+                                                        showCloseIcon: true,
+                                                        btnOk: TextButton(
+                                                          style: ButtonStyle(
+                                                            backgroundColor:
+                                                                MaterialStateProperty
+                                                                    .all(Colors
+                                                                        .red),
+                                                            shape: MaterialStateProperty
+                                                                .all<
+                                                                    RoundedRectangleBorder>(
+                                                              RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            18.0),
+                                                                side: const BorderSide(
+                                                                    color: Colors
+                                                                        .red),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          onPressed: () {
+                                                            database
+                                                                .deleteMyProductRepo(
+                                                                    snapshot
+                                                                        .data![
+                                                                            index]
+                                                                        .id);
+                                                            Navigator.pop(
+                                                                context);
+                                                            setState(() {});
+                                                            // FirebaseAuth
+                                                            //     .instance
+                                                            //     .signOut();
+                                                          },
+                                                          child: const Text(
+                                                            "Delete",
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                        ),
+                                                        btnCancel: TextButton(
+                                                          style: ButtonStyle(
+                                                            backgroundColor:
+                                                                MaterialStateProperty
+                                                                    .all(Colors
+                                                                        .white),
+                                                            shape: MaterialStateProperty
+                                                                .all<
+                                                                    RoundedRectangleBorder>(
+                                                              RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            18.0),
+                                                                side: const BorderSide(
+                                                                    color: Colors
+                                                                        .red),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          child: const Text(
+                                                            "Cancel",
+                                                            style: TextStyle(
+                                                                color:
+                                                                    Colors.red),
+                                                          ),
+                                                        ),
+                                                      ).show();
                                                     },
                                                     icon: Icon(
                                                       Icons.delete,

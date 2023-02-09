@@ -349,6 +349,12 @@ class _HomePageState extends State<HomePage> {
               int.parse(inputQuantity.text) * selectedProduct!.unitPrice,
               selectedProduct!.id,
             );
+            // MyProduct? myProduct;
+            // MyProductServices().update(
+            //     selectedProduct!.id,
+            //     selectedProduct!.nameProduct,
+            //     myProduct!.stock - int.parse(inputQuantity.text),
+            //     selectedProduct!.unitPrice);
             Navigator.pop(context);
             setState(() {});
           }

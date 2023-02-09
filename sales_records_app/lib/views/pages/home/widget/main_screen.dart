@@ -247,7 +247,7 @@ class _MainScreenState extends State<MainScreen> {
                 Consumer<SharedProvider>(
                   builder: (BuildContext context, value, Widget? child) {
                     return Text(
-                      "Total Price = Rp ${(value.totalPrice == 0)? transactionWithProduct.transaction.totalPrice : value.totalPrice}",
+                      "Total Price = Rp ${(value.totalPrice == 0) ? transactionWithProduct.transaction.totalPrice : value.totalPrice}",
                       style: TextStyle(
                         fontSize: 16.0,
                       ),
@@ -277,16 +277,18 @@ class _MainScreenState extends State<MainScreen> {
         ),
         onPressed: () {
           // Edit Transaction
-          TransactionServices().update(
-            transactionWithProduct.transaction.id,
-            selectedProduct!.id,
-            int.parse(inputQuantity.text),
-            DateTime.parse(inputDate.text),
-            selectedProduct!.nameProduct,
-            int.parse(inputQuantity.text) * selectedProduct!.unitPrice,
-          );
-          Navigator.pop(context);
-          setState(() {});
+          if (_formKey.currentState!.validate()) {
+            TransactionServices().update(
+              transactionWithProduct.transaction.id,
+              selectedProduct!.id,
+              int.parse(inputQuantity.text),
+              DateTime.parse(inputDate.text),
+              selectedProduct!.nameProduct,
+              int.parse(inputQuantity.text) * selectedProduct!.unitPrice,
+            );
+            Navigator.pop(context);
+            setState(() {});
+          }
         },
         child: const Text(
           "Save",
@@ -325,6 +327,7 @@ class _MainScreenState extends State<MainScreen> {
       a.add(element.transaction.totalPrice);
     });
   }
+  // String formattedDateNow = DateFormat('dd MMM, yyyy').format(now);
 
   @override
   Widget build(BuildContext context) {
@@ -515,11 +518,11 @@ class _MainScreenState extends State<MainScreen> {
                                                     ),
                                                   ),
                                                   Text(
-                                                    snapshot
-                                                        .data![index]
-                                                        .transaction
-                                                        .transactionDate
-                                                        .toString(),
+                                                    DateFormat('yyyy-MM-dd')
+                                                        .format(snapshot
+                                                            .data![index]
+                                                            .transaction
+                                                            .transactionDate),
                                                     style: const TextStyle(
                                                       fontSize: 12.0,
                                                     ),
@@ -530,26 +533,34 @@ class _MainScreenState extends State<MainScreen> {
                                                   "qty : ${snapshot.data![index].transaction.quantity.toString()}"),
                                               Text(
                                                   "Rp ${snapshot.data![index].transaction.totalPrice.toString()}"),
-                                              InkWell(
-                                                onTap: (() {
-                                                  // awesomeDialogWidget(context).show();
-                                                  updateHistory(
-                                                          snapshot.data![index])
-                                                      .show();
-                                                }),
-                                                child:
-                                                    const Icon(Icons.edit_note),
-                                              ),
-                                              InkWell(
-                                                onTap: (() {
-                                                  database
-                                                      .deleteTransactionRepo(
-                                                    snapshot.data![index]
-                                                        .transaction.id,
-                                                  );
-                                                }),
-                                                child: const Icon(Icons.delete),
-                                              ),
+                                              Row(
+                                                children: [
+                                                  InkWell(
+                                                    onTap: (() {
+                                                      // awesomeDialogWidget(context).show();
+                                                      updateHistory(snapshot
+                                                              .data![index])
+                                                          .show();
+                                                    }),
+                                                    child: const Icon(
+                                                        Icons.edit_note),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  InkWell(
+                                                    onTap: (() {
+                                                      database
+                                                          .deleteTransactionRepo(
+                                                        snapshot.data![index]
+                                                            .transaction.id,
+                                                      );
+                                                    }),
+                                                    child: const Icon(
+                                                        Icons.delete),
+                                                  ),
+                                                ],
+                                              )
                                             ],
                                           ),
                                         ),

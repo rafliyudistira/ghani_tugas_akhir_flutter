@@ -1,81 +1,83 @@
-// import 'package:flutter/material.dart';
-// import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:flutter/material.dart';
+import 'package:sales_records_app/models/database.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
-// class Chart extends StatelessWidget {
-//   const Chart({Key? key}) : super(key: key);
+class Chart extends StatelessWidget {
+  const Chart({Key? key}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text("Charts"),
-//         actions: const [],
-//       ),
-//       body: SingleChildScrollView(
-//         child: Container(
-//           padding: const EdgeInsets.all(10.0),
-//           child: Column(
-//             children: [
-//               Builder(
-//                 builder: (context) {
-//                   final List<Map> chartData = [
-//                     {
-//                       "year": 2018,
-//                       "sales": 40,
-//                     },
-//                     {
-//                       "year": 2019,
-//                       "sales": 90,
-//                     },
-//                     {
-//                       "year": 2020,
-//                       "sales": 30,
-//                     },
-//                     {
-//                       "year": 2021,
-//                       "sales": 80,
-//                     },
-//                     {
-//                       "year": 2022,
-//                       "sales": 90,
-//                     },
-//                     {
-//                       "year": 2023,
-//                       "sales": 100,
-//                     },
-//                     {
-//                       "year": 2024,
-//                       "sales": 10,
-//                     },
-//                     {
-//                       "year": 2025,
-//                       "sales": 40,
-//                     },
-//                   ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Charts"),
+        actions: const [],
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            children: [
+              Builder(
+                builder: (context) {
+                  Transaction? transaction;
+                  final List<Map<dynamic, dynamic>> chartData = [
+                    {
+                      "year": 2018,
+                      "sales": 10,
+                    },
+                    {
+                      "year": 2019,
+                      "sales": 90,
+                    },
+                    {
+                      "year": 2020,
+                      "sales": 12,
+                    },
+                    {
+                      "year": 2021,
+                      "sales": 80,
+                    },
+                    {
+                      "year": 2022,
+                      "sales": 90,
+                    },
+                    {
+                      "year": 2023,
+                      "sales": 100,
+                    },
+                    {
+                      "year": 2024,
+                      "sales": 10,
+                    },
+                    {
+                      "year": 2025,
+                      "sales": 40,
+                    },
+                  ];
 
-//                   return Container(
-//                     color: Theme.of(context).cardColor,
-//                     padding: const EdgeInsets.all(12.0),
-//                     child: SfCartesianChart(
-//                       series: <ChartSeries>[
-//                         // Renders line chart
-//                         LineSeries<Map, dynamic>(
-//                           dataSource: chartData,
-//                           xValueMapper: (Map data, _) => data["year"],
-//                           yValueMapper: (Map data, _) => data["sales"],
-//                         )
-//                       ],
-//                     ),
-//                   );
-//                 },
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+                  return Container(
+                    color: Theme.of(context).cardColor,
+                    padding: const EdgeInsets.all(12.0),
+                    child: SfCartesianChart(
+                      series: <ChartSeries>[
+                        // Renders line chart
+                        LineSeries<Map, dynamic>(
+                          dataSource: chartData,
+                          xValueMapper: (Map data, _) => data["year"],
+                          yValueMapper: (Map data, _) => data["sales"],
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:flutter/material.dart';
@@ -282,32 +284,32 @@
 //   }
 // }
 
-import 'package:flutter/material.dart';
-import 'package:flutter_charts/flutter_charts.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_charts/flutter_charts.dart';
 
-class Chart extends StatefulWidget {
-  const Chart({super.key});
+// class Chart extends StatefulWidget {
+//   const Chart({super.key});
 
-  @override
-  State<Chart> createState() => _ChartState();
-}
+//   @override
+//   State<Chart> createState() => _ChartState();
+// }
 
-class _ChartState extends State<Chart> {
-  // List<LinearSales> data;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Padding(
-      padding: EdgeInsets.all(
-        32.0,
-      ),
-      // child: LineChart(data),
-      child: ElevatedButton(
-        onPressed: () {
-          print("o");
-        },
-        child: Text("TEST"),
-      ),
-    ));
-  }
-}
+// class _ChartState extends State<Chart> {
+//   // List<LinearSales> data;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//         child: Padding(
+//       padding: EdgeInsets.all(
+//         32.0,
+//       ),
+//       // child: LineChart(data),
+//       child: ElevatedButton(
+//         onPressed: () {
+//           print("o");
+//         },
+//         child: Text("TEST"),
+//       ),
+//     ));
+//   }
+// }

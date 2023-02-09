@@ -20,7 +20,7 @@ class MyProductServices {
   Future<List<MyProduct>> getAllProduct() async {
     final row = await database.getAllProductRepo();
     return row;
-    print(row);
+    // print(row);
   }
 
   Future update(int myProductId, String newNameProduct, int newStock,
